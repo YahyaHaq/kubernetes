@@ -14,13 +14,9 @@ spec:
     spec:
       containers:
         - name: server
-          image: stephengrider/multi-server
+          image: yahyahaq/multi-server1
           ports:
             - containerPort: 5000
-          command: ["/bin/sh", "-c"]
-          args:
-            - | 
-                npm install pg@8.0.4 --save ; npm run start
           env:
             - name: REDIS_HOST
               value: redis-cluster-ip-service
