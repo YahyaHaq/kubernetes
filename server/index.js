@@ -11,6 +11,11 @@ app.use(bodyParser.json());
 
 // Postgres Client Setup
 const { Pool } = require("pg");
+console.log(keys.pgUser)
+console.log(keys.pgHost)
+console.log(keys.pgDatabase)
+console.log(keys.pgPassword)
+console.log(keys.pgPort)
 const pgClient = new Pool({
   user: keys.pgUser,
   host: keys.pgHost,
@@ -23,7 +28,9 @@ const pgClient = new Pool({
       : { rejectUnauthorized: false },
 });
 
-pgClient.on("error",()=>{console.log("Lost pg connection")})
+pgClient.on("error",()=>{
+  console.log("WOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
+  console.log("Lost pg connection")})
 
 console.log("*******************************************")
 pgClient.on("connect", (client) => {
@@ -32,6 +39,7 @@ pgClient.on("connect", (client) => {
     .query("CREATE TABLE IF NOT EXISTS values (number INT)")
     .catch((err) => console.error(err));
 });
+console.log("*******************************************")
 
 // Redis Client Setup
 const redis = require("redis");
@@ -49,7 +57,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/values/all", async (req, res) => {
+  console.log("HEREEEEEE")
   const values = await pgClient.query("SELECT * from values");
+  console.log("THEREWEEEEEE")
 
   res.send(values.rows);
 });
