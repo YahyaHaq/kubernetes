@@ -4,14 +4,14 @@ kind: Ingress
 metadata:
   name: ingress-service
   annotations:
-    # REMOVE CLASSNAME ANNOTATION
+    # REMOVE CLASSNAME ANNOTATION
     nginx.ingress.kubernetes.io/use-regex: 'true'
     # ADD ANNOTATION
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     # ADD ANNOTATION
 spec:
   ingressClassName: nginx
-  # ADD INGRESSCLASSNAME FIELD
+  # ADD INGRESSCLASSNAME FIELD
   rules:
     - http:
         paths:
@@ -32,6 +32,6 @@ spec:
             backend:
               service:
                 # UPDATE SERVICE FIELDS
-                name: server-cluster-ip-service
+                name: server-cluser-ip-service
                 port:
                   number: 5000
